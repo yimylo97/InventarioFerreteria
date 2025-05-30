@@ -18,7 +18,7 @@ namespace FerreteriaApp.Data
         {
             if (_conexion == null)
             {
-                _conexion = new SqlConnection("Server=TU_SERVIDOR;Database=FerreteriaDB;Trusted_Connection=True;");
+                _conexion = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=FerreteriaDB;Trusted_Connection=True;");
             }
 
             if (_conexion.State == System.Data.ConnectionState.Closed)
