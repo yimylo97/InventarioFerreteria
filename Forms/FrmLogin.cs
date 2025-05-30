@@ -37,8 +37,8 @@ namespace InventarioFerreteria.Forms
                 }
                 else
                 {
-                    var frm = new FrmVentas();
-                    frm.Show();
+                    //var frm = new FrmVentas();
+                    //frm.Show();
                 }
             }
             else
