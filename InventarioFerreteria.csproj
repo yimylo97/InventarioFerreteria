@@ -53,6 +53,7 @@
       <DependentUpon>FrmProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Repositories\ProductoRepository.cs" />
     <Compile Include="Utils\Conexion.cs" />
     <Compile Include="Form1.cs">

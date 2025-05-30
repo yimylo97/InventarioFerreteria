@@ -18,11 +18,15 @@ namespace FerreteriaApp.Data
         {
             if (_conexion == null)
             {
-                _conexion = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=FerreteriaDB;Trusted_Connection=True;");
+                var conexion = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=FerreteriaDB;Trusted_Connection=True;");
+                conexion.Open();
+                return conexion;
             }
 
             if (_conexion.State == System.Data.ConnectionState.Closed)
+            {
                 _conexion.Open();
+            }
 
             return _conexion;
         }
