@@ -45,6 +45,37 @@ namespace FerreteriaApp.Repositories
 
             return lista;
         }
+
+        public void ActualizarProducto(Producto producto)
+        {
+            using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+            {
+                string query = "UPDATE Productos SET Marca = @Marca, Modelo = @Modelo, Precio = @Precio, CantidadInventario = @Cantidad WHERE ProductoID = @ProductoID";
+                using (SqlCommand comando = new SqlCommand(query, conexion))
+                {
+                    comando.Parameters.AddWithValue("@Marca", producto.Marca);
+                    comando.Parameters.AddWithValue("@Modelo", producto.Modelo);
+                    comando.Parameters.AddWithValue("@Precio", producto.Precio);
+                    comando.Parameters.AddWithValue("@Cantidad", producto.CantidadInventario);
+                    comando.Parameters.AddWithValue("@ProductoID", producto.ProductoID);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarProducto(int productoId)
+        {
+            using (SqlConnection conexion = ConexionDB.ObtenerConexion())
+            {
+                string query = "DELETE FROM Productos WHERE ProductoID = @ProductoID";
+                using (SqlCommand comando = new SqlCommand(query, conexion))
+                {
+                    comando.Parameters.AddWithValue("@ProductoID", productoId);
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
 
