@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
-namespace FerreteriaApp.Data
+namespace InventarioFerreteria.Data
 {
+
     public class ConexionDB
     {
         private static SqlConnection _conexion;
@@ -29,6 +31,10 @@ namespace FerreteriaApp.Data
             }
 
             return _conexion;
+
+            
         }
+
     }
+
 }

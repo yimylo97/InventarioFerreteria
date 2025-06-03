@@ -1,4 +1,4 @@
-﻿namespace InventarioFerreteria.Forms
+﻿namespace InventarioFerreteria.UI
 {
     partial class FormVentas
     {
@@ -45,8 +45,12 @@
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblTotalVenta = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.btnFinalizarVenta = new System.Windows.Forms.Button();
+            this.cboProductos = new System.Windows.Forms.ComboBox();
+            this.cmbProductos = new System.Windows.Forms.ComboBox();
+            this.btnGuardarVenta = new System.Windows.Forms.Button();
+            this.btnEliminarDelCarrito = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductosDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).BeginInit();
@@ -57,7 +61,7 @@
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Location = new System.Drawing.Point(12, 9);
             this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(131, 20);
+            this.lblBuscar.Size = new System.Drawing.Size(105, 16);
             this.lblBuscar.TabIndex = 0;
             this.lblBuscar.Text = "Buscar producto";
             // 
@@ -138,6 +142,7 @@
             this.btnAgregarAlCarrito.TabIndex = 7;
             this.btnAgregarAlCarrito.Text = "Agregar al carrito";
             this.btnAgregarAlCarrito.UseVisualStyleBackColor = true;
+            this.btnAgregarAlCarrito.Click += new System.EventHandler(this.btnAgregarAlCarrito_Click);
             // 
             // lblCarrito
             // 
@@ -147,7 +152,6 @@
             this.lblCarrito.Size = new System.Drawing.Size(49, 16);
             this.lblCarrito.TabIndex = 8;
             this.lblCarrito.Text = "Carrito:";
-            this.lblCarrito.Click += new System.EventHandler(this.lblCarrito_Click);
             // 
             // dgvCarrito
             // 
@@ -221,17 +225,17 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 164);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 20);
+            this.label1.Size = new System.Drawing.Size(51, 16);
             this.label1.TabIndex = 10;
             this.label1.Text = "Total: $";
             // 
-            // lblTotalVenta
+            // lblTotal
             // 
-            this.lblTotalVenta.Location = new System.Drawing.Point(62, 164);
-            this.lblTotalVenta.Name = "lblTotalVenta";
-            this.lblTotalVenta.Size = new System.Drawing.Size(64, 20);
-            this.lblTotalVenta.TabIndex = 11;
-            this.lblTotalVenta.Text = "0";
+            this.lblTotal.Location = new System.Drawing.Point(62, 164);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(64, 20);
+            this.lblTotal.TabIndex = 11;
+            this.lblTotal.Text = "0";
             // 
             // btnFinalizarVenta
             // 
@@ -242,13 +246,52 @@
             this.btnFinalizarVenta.Text = "Finalizar Venta";
             this.btnFinalizarVenta.UseVisualStyleBackColor = true;
             // 
+            // cboProductos
+            // 
+            this.cboProductos.FormattingEnabled = true;
+            this.cboProductos.Location = new System.Drawing.Point(5, 212);
+            this.cboProductos.Name = "cboProductos";
+            this.cboProductos.Size = new System.Drawing.Size(121, 24);
+            this.cboProductos.TabIndex = 13;
+            // 
+            // cmbProductos
+            // 
+            this.cmbProductos.FormattingEnabled = true;
+            this.cmbProductos.Location = new System.Drawing.Point(156, 212);
+            this.cmbProductos.Name = "cmbProductos";
+            this.cmbProductos.Size = new System.Drawing.Size(169, 24);
+            this.cmbProductos.TabIndex = 14;
+            // 
+            // btnGuardarVenta
+            // 
+            this.btnGuardarVenta.Location = new System.Drawing.Point(165, 148);
+            this.btnGuardarVenta.Name = "btnGuardarVenta";
+            this.btnGuardarVenta.Size = new System.Drawing.Size(109, 47);
+            this.btnGuardarVenta.TabIndex = 15;
+            this.btnGuardarVenta.Text = "Guardar Venta";
+            this.btnGuardarVenta.UseVisualStyleBackColor = true;
+            // 
+            // btnEliminarDelCarrito
+            // 
+            this.btnEliminarDelCarrito.Location = new System.Drawing.Point(356, 173);
+            this.btnEliminarDelCarrito.Name = "btnEliminarDelCarrito";
+            this.btnEliminarDelCarrito.Size = new System.Drawing.Size(128, 44);
+            this.btnEliminarDelCarrito.TabIndex = 16;
+            this.btnEliminarDelCarrito.Text = "Eliminar Venta";
+            this.btnEliminarDelCarrito.UseVisualStyleBackColor = true;
+            this.btnEliminarDelCarrito.Click += new System.EventHandler(this.btnEliminarDelCarrito_Click);
+            // 
             // FormVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEliminarDelCarrito);
+            this.Controls.Add(this.btnGuardarVenta);
+            this.Controls.Add(this.cmbProductos);
+            this.Controls.Add(this.cboProductos);
             this.Controls.Add(this.btnFinalizarVenta);
-            this.Controls.Add(this.lblTotalVenta);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvCarrito);
             this.Controls.Add(this.lblCarrito);
@@ -289,7 +332,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblTotalVenta;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnFinalizarVenta;
+        private System.Windows.Forms.ComboBox cboProductos;
+        private System.Windows.Forms.ComboBox cmbProductos;
+        private System.Windows.Forms.Button btnGuardarVenta;
+        private System.Windows.Forms.Button btnEliminarDelCarrito;
     }
 }

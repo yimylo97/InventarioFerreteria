@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InventarioFerreteria.Repositories;
+using InventarioFerreteria.UI;
 using System.Windows.Forms;
-using FerreteriaApp.Models;
-using FerreteriaApp.Repositories;
+using System;
+using InventarioFerreteria.Models;
+
 
 namespace InventarioFerreteria.Forms
 {
@@ -21,30 +16,51 @@ namespace InventarioFerreteria.Forms
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            var repo = new UsuarioRepository();
-            var usuario = repo.ValidarLogin(txtUsuario.Text.Trim(), txtContrasena.Text.Trim());
+            string nombre = txtUsuario.Text.Trim();
+            string contrasena = txtContrasena.Text.Trim();
 
-            if (usuario != null)
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(contrasena))
             {
-                MessageBox.Show($"Bienvenido, {usuario.NombreUsuario} ({usuario.Rol})");
+                MessageBox.Show("Por favor, ingresa el nombre de usuario y la contraseña.",
+                                "Campos requeridos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                this.Hide();
+            try
+            {
+                var repo = new UsuarioRepository();
+                var usuario = repo.ValidarLogin(nombre, contrasena);
 
-                if (usuario.Rol == "Administrador")
+                if (usuario != null)
                 {
-                    var frm = new FrmProductos();
-                    frm.Show();
+                    MessageBox.Show($"Bienvenido, {usuario.NombreUsuario} ({usuario.Rol})",
+                                    "Acceso concedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Hide();
+
+                    if (usuario.Rol.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
+                    {
+                        new FrmProductos().Show();
+                    }
+                    else
+                    {
+                        new FormVentas().Show();
+                    }
                 }
                 else
                 {
-                    //var frm = new FrmVentas();
-                    //frm.Show();
+                    MessageBox.Show("Usuario o contraseña incorrectos.",
+                                    "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtContrasena.Clear();
+                    txtUsuario.Focus();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Credenciales incorrectas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error durante el inicio de sesión: " + ex.Message,
+                                "Error del sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
 }
+

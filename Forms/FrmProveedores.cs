@@ -1,5 +1,4 @@
-﻿using FerreteriaApp.Repositories;
-using InventarioFerreteria.Models;
+﻿using InventarioFerreteria.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using InventarioFerreteria.Repositories;
 
 namespace InventarioFerreteria.Forms
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using FerreteriaApp.Models;
-using FerreteriaApp.Data;
+using InventarioFerreteria.Data;
+using InventarioFerreteria.Models;
 
-namespace FerreteriaApp.Repositories
+namespace InventarioFerreteria.Repositories
 {
     public class ProductoRepository
     {

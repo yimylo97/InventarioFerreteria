@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FerreteriaApp.Models;
-using FerreteriaApp.Repositories;
+using InventarioFerreteria.Models;
+using InventarioFerreteria.Repositories;
 
 namespace InventarioFerreteria.Forms
 {

@@ -73,6 +73,7 @@
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Venta.cs" />
     <Compile Include="Repositories\ProductoRepository.cs" />
     <Compile Include="Repositories\ProveedorRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
